@@ -19,17 +19,22 @@ let QNUM = document.getElementById('q-num');
 const SEND_BUTTON = document.getElementById('send');
 const ALL_Q = [];
 const ALL_JS = [];
-let qCounter = 0;
+let qCounter = 1;
 
+qCounter = localStorage.getItem('counter');
 HTML.innerHTML = localStorage.getItem('code');
 JS_CODE.innerHTML = localStorage.getItem('js-code');
-qCounter = localStorage.getItem('counter');
 QNUM.innerHTML = localStorage.getItem('counter');
 
 SEND_BUTTON.addEventListener('click', constructor);
 
 function constructor() {
+  if (qCounter == null) {
+    qCounter = 1;
+  }
   const Q = document.getElementById('question').value;
+  const IMG = document.getElementById('img').value;
+  const IMG_ALT = document.getElementById('img-alt').value;
   const A1 = document.getElementById('a1').value;
   const A2 = document.getElementById('a2').value;
   const A3 = document.getElementById('a3').value;
@@ -39,8 +44,14 @@ function constructor() {
   const A3_CHECK = document.getElementById('a3-checked');
   const A4_CHECK = document.getElementById('a4-checked');
   const ALL_Q_LEN = ALL_Q.length;
-  let template_head = `&lt;div id='q${qCounter}'&gt;
-      &lt;div class='q-desc'&gt;${Q}&lt;/div&gt; `;
+  let template_head;
+  
+  if (IMG === '') {
+    template_head = `&lt;div id='q${qCounter}'&gt; &lt;div class='q-desc'&gt;${Q}&lt;/div&gt; `;
+  } else {
+    template_head = `&lt;div id='q${qCounter}'&gt; &lt;div class='q-desc'&gt;${Q}&lt;/div&gt;&lt;img class='test-img' src='${IMG}' alt='${IMG_ALT}'&gt;`;
+  }
+
   let template_end = `&lt;div class='next-q'&gt;Next question&lt;/div&gt;&lt;/div&gt; `;
   let js_template_head = `
     const Q${qCounter}A1 = document.getElementById('Q${qCounter}A1');
