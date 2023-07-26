@@ -62,7 +62,88 @@ function constructor() {
   let js_template_end = `score++;
         console.log('yes${qCounter}');
     }`;
-  
+
+  //FOR QUESTIONS WITH 2 ANSWERS
+  if (A3 === '') {
+    js_template_head = `
+    const Q${qCounter}A1 = document.getElementById('Q${qCounter}A1');
+    const Q${qCounter}A2 = document.getElementById('Q${qCounter}A2');
+    if `;
+    if (A1_CHECK.checked) {
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1} RIGHT &lt;/div&gt`;
+    template_head += template_q1;
+    let js_template_q1 = `(Q1A1.classList.contains('chosen') && `;
+    js_template_head += js_template_q1;
+  } else {
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1}&lt;/div&gt`;
+    template_head += template_q1;
+    let js_template_q1 = `(!Q${qCounter}A1.classList.contains('chosen') && `;
+    js_template_head += js_template_q1;
+  }
+    if (A2_CHECK.checked) {
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A1} RIGHT &lt;/div&gt`;
+      template_head += template_q2;
+      let js_template_q2 = `(Q${qCounter}A2.classList.contains('chosen') && `;
+      js_template_head += js_template_q2;
+    } else {
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A1}&lt;/div&gt`;
+      template_head += template_q2;
+      let js_template_q2 = `(!Q${qCounter}A2.classList.contains('chosen') && `;
+      js_template_head += js_template_q2;
+    }
+  }
+
+  // FOR QUESTIONS WITH 3 ANSWERS
+  if (A4 === '' && (A3 !== '')) {
+    js_template_head = `
+    const Q${qCounter}A1 = document.getElementById('Q${qCounter}A1');
+    const Q${qCounter}A2 = document.getElementById('Q${qCounter}A2');
+    const Q${qCounter}A3 = document.getElementById('Q${qCounter}A3');
+    if `;
+    if (A1_CHECK.checked) {
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1} RIGHT &lt;/div&gt`;
+    template_head += template_q1;
+    let js_template_q1 = `(Q1A1.classList.contains('chosen') && `;
+    js_template_head += js_template_q1;
+  } else {
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1}&lt;/div&gt`;
+    template_head += template_q1;
+    let js_template_q1 = `(!Q${qCounter}A1.classList.contains('chosen') && `;
+    js_template_head += js_template_q1;
+  }
+    if (A2_CHECK.checked) {
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A1} RIGHT &lt;/div&gt`;
+      template_head += template_q2;
+      let js_template_q2 = `(Q${qCounter}A2.classList.contains('chosen') && `;
+      js_template_head += js_template_q2;
+    } else {
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A1}&lt;/div&gt`;
+      template_head += template_q2;
+      let js_template_q2 = `(!Q${qCounter}A2.classList.contains('chosen') && `;
+      js_template_head += js_template_q2;
+    }
+    if (A3_CHECK.checked) {
+      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;${A1} RIGHT &lt;/div&gt`;
+      template_head += template_q3;
+      let js_template_q3 = `(Q${qCounter}A3.classList.contains('chosen') && `;
+      js_template_head += js_template_q3;
+    } else {
+      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;${A1}&lt;/div&gt`;
+      template_head += template_q3;
+      let js_template_q3 = `(!Q${qCounter}A3.classList.contains('chosen') && `;
+      js_template_head += js_template_q3;
+    }
+  }
+
+  // FOR QUESTIONS WITH 4 ANSWERS
+  if (A4 !== '') {
+    console.log('ya')
+    js_template_head = `
+    const Q${qCounter}A1 = document.getElementById('Q${qCounter}A1');
+    const Q${qCounter}A2 = document.getElementById('Q${qCounter}A2');
+    const Q${qCounter}A3 = document.getElementById('Q${qCounter}A3');
+    const Q${qCounter}A4 = document.getElementById('Q${qCounter}A4');
+    if `;
   if (A1_CHECK.checked) {
     let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1} RIGHT &lt;/div&gt`;
     template_head += template_q1;
@@ -109,7 +190,8 @@ function constructor() {
       template_head += template_q4;
       let js_template_q4 = `(!Q${qCounter}A4.classList.contains('chosen')) {`;
       js_template_head += js_template_q4;
-    }
+    } 
+  }
 
   let template = template_head + template_end;
   let js_template = js_template_head + js_template_end;
