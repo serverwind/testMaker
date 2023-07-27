@@ -47,12 +47,12 @@ function constructor() {
   let template_head;
   
   if (IMG === '') {
-    template_head = `&lt;div id='q${qCounter}'&gt; &lt;div class='q-desc'&gt;${Q}&lt;/div&gt; `;
+    template_head = `&lt;div id='q${qCounter}' class='questions every-q hidden-q'&gt; &lt;div class='q-desc'&gt;${Q}&lt;/div&gt; `;
   } else {
-    template_head = `&lt;div id='q${qCounter}'&gt; &lt;div class='q-desc'&gt;${Q}&lt;/div&gt;&lt;img class='test-img' src='${IMG}' alt='${IMG_ALT}'&gt;`;
+    template_head = `&lt;div id='q${qCounter}' class='questions every-q hidden-q'&gt; &lt;div class='q-desc'&gt;${Q}&lt;/div&gt;&lt;img class='test-img' src='${IMG}' alt='${IMG_ALT}'&gt;`;
   }
 
-  let template_end = `&lt;div class='next-q'&gt;Next question&lt;/div&gt;&lt;/div&gt; `;
+  let template_end = `&lt;div class='next-q'&gt;Принять ответ&lt;/div&gt;&lt;/div&gt; `;
   let js_template_head = `
     const Q${qCounter}A1 = document.getElementById('Q${qCounter}A1');
     const Q${qCounter}A2 = document.getElementById('Q${qCounter}A2');
@@ -70,27 +70,27 @@ function constructor() {
     const Q${qCounter}A2 = document.getElementById('Q${qCounter}A2');
     if `;
     if (A1_CHECK.checked) {
-    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1} RIGHT &lt;/div&gt`;
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A1} &lt;span class='right-answer'&gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;`;
     template_head += template_q1;
-    let js_template_q1 = `(Q1A1.classList.contains('chosen') && `;
+    let js_template_q1 = `(Q${qCounter}A1.classList.contains('chosen') && `;
     js_template_head += js_template_q1;
   } else {
-    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1}&lt;/div&gt`;
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A1}&lt;/div&gt`;
     template_head += template_q1;
     let js_template_q1 = `(!Q${qCounter}A1.classList.contains('chosen') && `;
     js_template_head += js_template_q1;
   }
     if (A2_CHECK.checked) {
-      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A2} RIGHT &lt;/div&gt`;
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A2} &lt;span class='right-answer'&gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;`;
       template_head += template_q2;
-      let js_template_q2 = `(Q${qCounter}A2.classList.contains('chosen') && `;
+      let js_template_q2 = `(Q${qCounter}A2.classList.contains('chosen'))) {`;
       js_template_head += js_template_q2;
     } else {
-      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A2}&lt;/div&gt`;
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A2}&lt;/div&gt`;
       template_head += template_q2;
-      let js_template_q2 = `(!Q${qCounter}A2.classList.contains('chosen') && `;
+      let js_template_q2 = `(!Q${qCounter}A2.classList.contains('chosen'))) {`;
       js_template_head += js_template_q2;
-    }
+    } 
   }
 
   // FOR QUESTIONS WITH 3 ANSWERS
@@ -101,38 +101,38 @@ function constructor() {
     const Q${qCounter}A3 = document.getElementById('Q${qCounter}A3');
     if `;
     if (A1_CHECK.checked) {
-    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1} RIGHT &lt;/div&gt`;
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A1} &lt;span class='right-answer'&gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;`;
     template_head += template_q1;
-    let js_template_q1 = `(Q1A1.classList.contains('chosen') && `;
+    let js_template_q1 = `(Q${qCounter}A1.classList.contains('chosen') && `;
     js_template_head += js_template_q1;
   } else {
-    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1}&lt;/div&gt`;
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A1}&lt;/div&gt;`;
     template_head += template_q1;
     let js_template_q1 = `(!Q${qCounter}A1.classList.contains('chosen') && `;
     js_template_head += js_template_q1;
   }
     if (A2_CHECK.checked) {
-      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A2} RIGHT &lt;/div&gt`;
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A2} &lt;span class='right-answer'&gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;`;
       template_head += template_q2;
-      let js_template_q2 = `(Q${qCounter}A2.classList.contains('chosen') && `;
+      let js_template_q2 = `(Q${qCounter}A2.classList.contains('chosen')) && `;
       js_template_head += js_template_q2;
     } else {
-      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A2}&lt;/div&gt`;
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A2}&lt;/div&gt`;
       template_head += template_q2;
-      let js_template_q2 = `(!Q${qCounter}A2.classList.contains('chosen') && `;
+      let js_template_q2 = `(!Q${qCounter}A2.classList.contains('chosen')) && `;
       js_template_head += js_template_q2;
     }
     if (A3_CHECK.checked) {
-      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;${A3} RIGHT &lt;/div&gt`;
+      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A3} &lt;span class='right-answer'&gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt`;
       template_head += template_q3;
-      let js_template_q3 = `(Q${qCounter}A3.classList.contains('chosen') && `;
+      let js_template_q3 = `(Q${qCounter}A3.classList.contains('chosen'))) {`;
       js_template_head += js_template_q3;
     } else {
-      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;${A3}&lt;/div&gt`;
+      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A3}&lt;/div&gt`;
       template_head += template_q3;
-      let js_template_q3 = `(!Q${qCounter}A3.classList.contains('chosen') && `;
+      let js_template_q3 = `(!Q${qCounter}A3.classList.contains('chosen'))) {`;
       js_template_head += js_template_q3;
-    }
+    } 
   }
 
   // FOR QUESTIONS WITH 4 ANSWERS
@@ -145,50 +145,50 @@ function constructor() {
     const Q${qCounter}A4 = document.getElementById('Q${qCounter}A4');
     if `;
   if (A1_CHECK.checked) {
-    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1} RIGHT &lt;/div&gt`;
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A1} &lt;span class='right-answer'&gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;`;
     template_head += template_q1;
-    let js_template_q1 = `(Q1A1.classList.contains('chosen') && `;
+    let js_template_q1 = `(Q${qCounter}A1.classList.contains('chosen') && `;
     js_template_head += js_template_q1;
   } else {
-    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;${A1}&lt;/div&gt`;
+    let template_q1 = `&lt;div id='Q${qCounter}A1'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A1}&lt;/div&gt;`;
     template_head += template_q1;
     let js_template_q1 = `(!Q${qCounter}A1.classList.contains('chosen') && `;
     js_template_head += js_template_q1;
   }
 
     if (A2_CHECK.checked) {
-      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A2} RIGHT &lt;/div&gt`;
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A2} &lt;span class='right-answer'&gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;`;
       template_head += template_q2;
-      let js_template_q2 = `(Q${qCounter}A2.classList.contains('chosen') && `;
+      let js_template_q2 = `(Q${qCounter}A2.classList.contains('chosen')) && `;
       js_template_head += js_template_q2;
     } else {
-      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;${A2}&lt;/div&gt`;
+      let template_q2 = `&lt;div id='Q${qCounter}A2'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A2}&lt;/div&gt`;
       template_head += template_q2;
-      let js_template_q2 = `(!Q${qCounter}A2.classList.contains('chosen') && `;
+      let js_template_q2 = `(!Q${qCounter}A2.classList.contains('chosen')) && `;
       js_template_head += js_template_q2;
     }
 
     if (A3_CHECK.checked) {
-      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;${A3} RIGHT &lt;/div&gt`;
+      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A3} &lt;span class='right-answer'&gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;`;
       template_head += template_q3;
-      let js_template_q3 = `(Q${qCounter}A3.classList.contains('chosen') && `;
+      let js_template_q3 = `(Q${qCounter}A3.classList.contains('chosen')) && `;
       js_template_head += js_template_q3;
     } else {
-      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;${A3}&lt;/div&gt`;
+      let template_q3 = `&lt;div id='Q${qCounter}A3'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A3}&lt;/div&gt`;
       template_head += template_q3;
-      let js_template_q3 = `(!Q${qCounter}A3.classList.contains('chosen') && `;
+      let js_template_q3 = `(!Q${qCounter}A3.classList.contains('chosen')) && `;
       js_template_head += js_template_q3;
     }
 
     if (A4_CHECK.checked) {
-      let template_q4 = `&lt;div id='Q${qCounter}A4'&gt;${A4} RIGHT &lt;/div&gt`;
+      let template_q4 = `&lt;div id='Q${qCounter}A4'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A4} &lt;span class='right-answer'&gt;&lt;i class="fas fa-check-square"&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;`;
       template_head += template_q4;
-      let js_template_q4 = `(Q${qCounter}A4.classList.contains('chosen')) {`;
+      let js_template_q4 = `(Q${qCounter}A4.classList.contains('chosen'))) {`;
       js_template_head += js_template_q4;
     } else {
-      let template_q4 = `&lt;div id='Q${qCounter}A4'&gt;${A4}&lt;/div&gt`;
+      let template_q4 = `&lt;div id='Q${qCounter}A4'&gt;&lt;i class="far fa-circle"&gt;&lt;/i&gt; ${A4}&lt;/div&gt`;
       template_head += template_q4;
-      let js_template_q4 = `(!Q${qCounter}A4.classList.contains('chosen')) {`;
+      let js_template_q4 = `(!Q${qCounter}A4.classList.contains('chosen'))) {`;
       js_template_head += js_template_q4;
     } 
   }
@@ -211,4 +211,59 @@ function constructor() {
   localStorage.setItem('code', HTML.innerHTML);
   localStorage.setItem('js-code', JS_CODE.innerHTML);
   localStorage.setItem('counter', qCounter);
+
+  clearInputs();
+  resetButtonsNames();
+}
+
+function clearInputs() {
+  document.getElementById('question').value = '';
+  document.getElementById('a1').value = '';
+  document.getElementById('a2').value = '';
+  document.getElementById('a3').value = '';
+  document.getElementById('a4').value = '';
+}
+
+document.getElementById('reset').addEventListener('click', reset);
+
+function reset() {
+  localStorage.clear();
+  location.reload();
+}
+
+document.getElementById('copy-html').addEventListener('click', сopyHtml);
+
+function сopyHtml(){
+    let r = document.createRange();
+    r.selectNode(document.getElementById('code'));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    try {
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        document.getElementById('copy-html').innerHTML = 'Скопировано';
+    } catch (err) {
+        console.log('Unable to copy!');
+    }
+}
+
+document.getElementById('copy-js').addEventListener('click', сopyJs);
+
+function сopyJs(){
+    let r = document.createRange();
+    r.selectNode(document.getElementById('js-code'));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(r);
+    try {
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        document.getElementById('copy-js').innerHTML = 'Скопировано';
+    } catch (err) {
+        console.log('Unable to copy!');
+    }
+}
+
+function resetButtonsNames() {
+  document.getElementById('copy-html').innerHTML = 'Копировать HTML';
+  document.getElementById('copy-js').innerHTML = 'Копировать JS';
 }

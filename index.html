@@ -5,49 +5,55 @@
   <title>Test Maker</title>
   <link rel="stylesheet" href="style.css">
   <style>
-#code {
-  background-color:lightblue;
-  margin:1em 0;
-  padding:1em;
-}
-#js-code {
-  background-color:lightgray;
-  padding:1em;
-}
   </style>
-  <!-- Добавление SDK Firebase Firestore -->
 
 </head>
 <body>
   <h1>Test Maker</h1>
-  <div id="q-num"></div>
-  <div>
-    <input id="question" type="text" placeholder='q'>
-  </div>
-  <div>
-    <input id="img" type="text" placeholder='img'>
-    <input id="img-alt" type="text" placeholder='alt'>
-  </div>
-  <div>
-    <input id="a1" type="text" placeholder='a1'>
-    <input id='a1-checked' type="checkbox">
-  </div>
-  <div>
-    <input id="a2" type="text" placeholder='a2'>
-    <input id='a2-checked' type="checkbox">
-  </div>
-  <div>
-    <input id="a3" type="text" placeholder='a3'>
-    <input id='a3-checked' type="checkbox">
-  </div>
-  <div>
-    <input id="a4" type="text" placeholder='a4'>
-    <input id='a4-checked' type="checkbox">
-  </div>
-  <button id="send">Send</button>
+  <section class='q-num-wrapper'>
+    <span>Текущий номер вопроса: </span>
+    <span id="q-num"></span>
+  </section>
+  <section class='form'>
+    <div>
+      <input id="question" type="text" placeholder='Вопрос'>
+    </div>
+    <div>
+      <input id="img" type="text" placeholder='ссылка на картинку'>
+      <input id="img-alt" type="text" placeholder='alt'>
+    </div>
+    <div>
+      <input id="a1" type="text" placeholder='Ответ1'>
+      <input id='a1-checked' type="checkbox">
+    </div>
+    <div>
+      <input id="a2" type="text" placeholder='Ответ2'>
+      <input id='a2-checked' type="checkbox">
+    </div>
+    <div>
+      <input id="a3" type="text" placeholder='Ответ3'>
+      <input id='a3-checked' type="checkbox">
+    </div>
+    <div>
+      <input id="a4" type="text" placeholder='Ответ4'>
+      <input id='a4-checked' type="checkbox">
+    </div>
+    <button id="send">Сохранить</button>
+  </section>
 
-  <section id="code"></section>
-  <section id="js-code"></section>
+  <section class='output'>
+    <div id="code"></div>
+    <div id="js-code"></div>
+  </section>
+  <section class="copy">
+    <button id="copy-html">Копировать HTML</button>
+    <button id="copy-js">Копировать JS</button>
+  </section>
+
+  <section class="danger">
+    <p>Сбрасывайте тест только когда закончили. Не нажимайте кнопку ниже, если еще работаете над тестом.</p>
+    <button id="reset">СБРОС</button>
+  </section>
 
   <script src='main.js'></script>
 

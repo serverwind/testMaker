@@ -1,3 +1,83 @@
+html, body {
+  margin: 0;
+}
+
+.form {
+  padding: 1em;
+}
+
+.output {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:20px;
+  margin-top: 3em;
+}
+
+.q-num-wrapper {
+  margin-bottom: 1em;
+  text-align:center;
+}
+
+#code {
+  background-color:lightblue;
+  padding:1em;
+  max-height: 200px;
+  overflow-y:auto;
+}
+
+#js-code {
+  background-color:lightgray;
+  padding:1em;
+  max-height: 200px;
+  overflow-y:auto;
+}
+
+#question, #a1, #a2, #a3, #a4 {
+  width: 70%;
+  height: 30px;
+}
+
+#img {
+  width: 45%;
+}
+
+#img-alt {
+  width: 24%;
+}
+
+#img, #img-alt {
+  height:30px;
+}
+
 div input {
   margin-bottom: 10px;
 }
+
+input[type=checkbox] {
+  width:20px;
+  height:20px;
+}
+
+.danger {
+  background: #e2f18e;
+  text-align:center;
+  padding: 1em;
+  margin-top: 20em;
+}
+
+h1 {
+  text-align:center;
+}
+
+#copy-html, #copy-js, #send {
+  margin-top:0.5em;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.copy {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
